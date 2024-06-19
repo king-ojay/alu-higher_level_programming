@@ -1,2 +1,3 @@
 #!/bin/bash
-print ("Hello, Ojay")|$PYCODE
+PYCODE='print ("Hello, Ojay")'
+echo 'PYCODE'
