@@ -1,2 +1,2 @@
 #!/bin/bash
-PYCODE='print ("Hello, WOrld")' echo "PYCODE"
+python3 -c "$PYCODE"
