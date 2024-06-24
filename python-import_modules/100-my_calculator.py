@@ -6,12 +6,16 @@ def my_calculator():
     # Check if the number of arguments is correct
     if len(sys.argv) != 4:
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
-        sys.exit(1)
+        return
     
     # Extract arguments
-    a = int(sys.argv[1])
-    operator = sys.argv[2]
-    b = int(sys.argv[3])
+    try:
+        a = int(sys.argv[1])
+        operator = sys.argv[2]
+        b = int(sys.argv[3])
+    except ValueError:
+        print("Usage: ./100-my_calculator.py <a> <operator> <b>")
+        return
     
     # Perform the operation based on the operator
     if operator == '+':
@@ -24,7 +28,7 @@ def my_calculator():
         result = divide(a, b)
     else:
         print("Unknown operator. Available operators: +, -, * and /")
-        sys.exit(1)
+        return
     
     # Print the result
     print("{} {} {} = {}".format(a, operator, b, result))
