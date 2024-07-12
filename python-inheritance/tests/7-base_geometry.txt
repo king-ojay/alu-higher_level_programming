@@ -1,17 +1,69 @@
-# This file contains test cases for the BaseGeometry class
+# Test case 1: instantiation
+bg = BaseGeometry()
 
-# Test case 1: integer_validator with valid integer
+# Test case 2: area() method
+try:
+    bg.area()
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))  # Should raise Exception: area() is not implemented
+
+# Test case 3: integer_validator() with valid integer
 bg.integer_validator("my_int", 12)   # Should not raise an exception
 
-# Test case 2: integer_validator with valid integer
+# Test case 4: integer_validator() with valid integer
 bg.integer_validator("width", 89)    # Should not raise an exception
 
-# Test case 3: integer_validator with a string
-bg.integer_validator("name", "John") # Should raise a TypeError: name must be an integer
+# Test case 5: integer_validator() with a string
+try:
+    bg.integer_validator("name", "John")
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))  # Should raise TypeError: name must be an integer
 
-# Test case 4: integer_validator with zero
-bg.integer_validator("age", 0)       # Should raise a ValueError: age must be greater than 0
+# Test case 6: integer_validator() with zero
+try:
+    bg.integer_validator("age", 0)
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))  # Should raise ValueError: age must be greater than 0
 
-# Test case 5: integer_validator with a negative integer
-bg.integer_validator("distance", -4) # Should raise a ValueError: distance must be greater than 0
+# Test case 7: integer_validator() with a negative integer
+try:
+    bg.integer_validator("distance", -4)
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))  # Should raise ValueError: distance must be greater than 0
 
+# Test case 8: integer_validator() with a float
+try:
+    bg.integer_validator("age", 13.5)
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))  # Should raise TypeError: age must be an integer
+
+# Test cases with other invalid types
+try:
+    bg.integer_validator("age", "4")
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))  # Should raise TypeError: age must be an integer
+
+try:
+    bg.integer_validator("age", (4,))
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))  # Should raise TypeError: age must be an integer
+
+try:
+    bg.integer_validator("age", [3])
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))  # Should raise TypeError: age must be an integer
+
+try:
+    bg.integer_validator("age", True)
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))  # Should raise TypeError: age must be an integer
+
+try:
+    bg.integer_validator("age", {3, 4})
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))  # Should raise TypeError: age must be an integer
+
+try:
+    bg.integer_validator("age", None)
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))  # Should raise TypeError: age must be an integer
