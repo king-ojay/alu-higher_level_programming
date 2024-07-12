@@ -1,4 +1,4 @@
-#!/bin/usr/python3
+#!/usr/bin/python3
 class BaseGeometry:
     """
     BaseGeometry class with methods for area calculation and integer validation.
