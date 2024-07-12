@@ -1,0 +1,17 @@
+# This file contains test cases for the BaseGeometry class
+
+# Test case 1: integer_validator with valid integer
+bg.integer_validator("my_int", 12)   # Should not raise an exception
+
+# Test case 2: integer_validator with valid integer
+bg.integer_validator("width", 89)    # Should not raise an exception
+
+# Test case 3: integer_validator with a string
+bg.integer_validator("name", "John") # Should raise a TypeError: name must be an integer
+
+# Test case 4: integer_validator with zero
+bg.integer_validator("age", 0)       # Should raise a ValueError: age must be greater than 0
+
+# Test case 5: integer_validator with a negative integer
+bg.integer_validator("distance", -4) # Should raise a ValueError: distance must be greater than 0
+
