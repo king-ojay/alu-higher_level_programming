@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 class MyInt(int):
     """
     MyInt is a subclass of int with inverted == and != operators.
