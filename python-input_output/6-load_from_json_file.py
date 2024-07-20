@@ -2,9 +2,7 @@
 """
 This module contains a function that loads an object from a JSON file.
 """
-
 import json
-
 def load_from_json_file(filename):
     """
     Loads an object from a text file, using JSON representation.
