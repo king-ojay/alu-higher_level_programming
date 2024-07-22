@@ -1,4 +1,12 @@
 #!/usr/bin/python3
+"""
+This module adds command line arguments to a list and saves it to a JSON file.
+
+It uses previously defined functions 'save_to_json_file' and 'load_from_json_file'
+to handle JSON file operations. The list is saved in a file named 'add_item.json'.
+
+Usage: ./7-add_item.py [arg1] [arg2] ...
+"""
 import sys
 from os import path
 from save_to_json_file import save_to_json_file
