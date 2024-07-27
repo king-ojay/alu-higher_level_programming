@@ -1,13 +1,7 @@
--- Check and show privileges for user_0d_1
-SELECT IF(COUNT(*) = 1, 'Exists', 'Does not exist') AS user_status
-FROM mysql.user
-WHERE user = 'user_0d_1' AND host = 'localhost';
+-- This script lists all privileges of MySQL users user_0d_1 and user_0d_2 on localhost
 
+-- List privileges for user_0d_1
 SHOW GRANTS FOR 'user_0d_1'@'localhost';
 
--- Check and show privileges for user_0d_2
-SELECT IF(COUNT(*) = 1, 'Exists', 'Does not exist') AS user_status
-FROM mysql.user
-WHERE user = 'user_0d_2' AND host = 'localhost';
-
+-- List privileges for user_0d_2
 SHOW GRANTS FOR 'user_0d_2'@'localhost';
