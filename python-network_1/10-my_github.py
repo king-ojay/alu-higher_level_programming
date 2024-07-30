@@ -1,31 +1,22 @@
 #!/usr/bin/python3
+"""
+takes your Github credentials (username and password) and uses the
+Github API to display your id
+"""
 import requests
-import sys
+from sys import argv
 
-def get_github_user_id(username, token):
-    url = 'https://api.github.com/user'
-    response = requests.get(url, auth=(username, token))
-
-    if response.status_code == 200:
-        data = response.json()
-        return data.get('id')
-    else:
-        return None
-
-def main():
-    if len(sys.argv) != 3:
-        print("Usage: ./10-my_github.py <username> <personal_access_token>")
-        sys.exit(1)
-
-    username = sys.argv[1]
-    token = sys.argv[2]
-
-    user_id = get_github_user_id(username, token)
-    if user_id is not None:
-        print(user_id)
-    else:
-        print(None)
 
 if __name__ == "__main__":
-    main()
-
+    """
+    takes your Github credentials (username and password) and uses the
+    Github API to display your id
+    """
+    username = argv[1]
+    password = argv[2]
+    url = 'https://api.github.com/user'
+    r = requests.get(url, auth=(username, password))
+    try:
+        print(r.json().get('id'))
+    except:
+        pass
