@@ -1,3 +1,3 @@
--- ALL rows
-SELECT*
-FROM first_table
+-- 6-list_values.sql
+SELECT * FROM first_table;
+
