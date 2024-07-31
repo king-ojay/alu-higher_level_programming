@@ -1,9 +1,11 @@
 #!/usr/bin/python3
+# grade_book_app.py
+
 from student import Student
 from course import Course
 from grade_book import GradeBook
 
-def main():
+def run_grade_book_app():
     grade_book = GradeBook()
 
     while True:
@@ -85,4 +87,4 @@ def main():
             print("Invalid choice. Please enter a number from 1 to 7.")
 
 if __name__ == "__main__":
-    main()
+    run_grade_book_app()
