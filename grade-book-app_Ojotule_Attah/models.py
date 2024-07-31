@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float, Table
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, sessionmaker
+from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
@@ -38,3 +38,4 @@ class Course(Base):
     credits = Column(Integer, nullable=False)
     grade = Column(String)
     students = relationship('Student', secondary=student_course, back_populates='courses_registered')
+
