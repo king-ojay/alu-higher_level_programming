@@ -1,10 +1,10 @@
-# Grade Book Application
+ Grade Book Application
 
-## Overview
+ Overview
 
 The Grade Book Application is a Python program that allows users to create and manage student records, course records, and transcripts. It includes features for course registration, GPA calculation, and data structure search and ranking.
 
-## Features
+ Features
 
 - Create student records
 - Store student information including email, names, and registered courses
@@ -14,5 +14,4 @@ The Grade Book Application is a Python program that allows users to create and m
 - Rank students based on their GPA
 - Search students by GPA
 - Generate transcripts for students
-
-## Project Structure
+Project Structure
