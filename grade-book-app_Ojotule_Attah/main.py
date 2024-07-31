@@ -1,9 +1,8 @@
-# main.py
-from database_setup.py import session
-from grade_book.py import GradeBook
+from database_setup import session
+from grade_book import GradeBook
 from models import Student, Course
 
-if __name__ == "__main__":
+def run_grade_book_app():
     # Create a GradeBook instance with a database session
     grade_book = GradeBook(session)
 
@@ -18,4 +17,7 @@ if __name__ == "__main__":
     # Calculate GPA and generate transcript
     grade_book.calculate_GPA(student1)
     print(grade_book.generate_transcript(student1))
+
+if __name__ == "__main__":
+    run_grade_book_app()
 
