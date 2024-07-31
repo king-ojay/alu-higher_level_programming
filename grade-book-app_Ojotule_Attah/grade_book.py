@@ -1,4 +1,3 @@
-# grade_book.py
 from models import Student, Course
 
 class GradeBook:
@@ -43,4 +42,3 @@ class GradeBook:
             transcript += f"- {course.name}, Trimester: {course.trimester}, Credits: {course.credits}, Grade: {course.grade}\n"
         transcript += f"GPA: {student.GPA}\n"
         return transcript
-
