@@ -1,0 +1,54 @@
+>>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+
+# Test normal matrix multiplication
+>>> print(matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
+[[7, 10], [15, 22]]
+
+>>> print(matrix_mul([[1, 2]], [[3, 4], [5, 6]]))
+[[13, 16]]
+
+# Test with non-list input
+>>> matrix_mul("not a list", [[1, 2], [3, 4]])
+Traceback (most recent call last):
+    ...
+TypeError: m_a must be a list
+
+>>> matrix_mul([[1, 2], [3, 4]], "not a list")
+Traceback (most recent call last):
+    ...
+TypeError: m_b must be a list
+
+# Test with non-list of lists
+>>> matrix_mul([1, 2, 3], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+    ...
+TypeError: m_a must be a list of lists
+
+# Test with empty matrices
+>>> matrix_mul([], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+    ...
+ValueError: m_a can't be empty
+
+>>> matrix_mul([[]], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+    ...
+ValueError: m_a can't be empty
+
+# Test with non-number elements
+>>> matrix_mul([[1, "string"], [3, 4]], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+    ...
+TypeError: m_a should contain only integers or floats
+
+# Test with different sized rows
+>>> matrix_mul([[1, 2], [3, 4, 5]], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+    ...
+TypeError: each row of m_a must be of the same size
+
+# Test with matrices that can't be multiplied
+>>> matrix_mul([[1, 2, 3], [4, 5, 6]], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+    ...
+ValueError: m_a and m_b can't be multiplied
