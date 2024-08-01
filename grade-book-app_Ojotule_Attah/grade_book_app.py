@@ -1,15 +1,12 @@
-#!/usr/bin/python3
-# grade_book_app.py
-
-from student import Student
-from course import Course
 from grade_book import GradeBook
+from models import Student, Course
+from database_setup import session
 
 def run_grade_book_app():
-    grade_book = GradeBook()
+    grade_book = GradeBook(session)
 
     while True:
-        print("\nGrade Book Application")
+        print("Choose an action:")
         print("1. Add Student")
         print("2. Add Course")
         print("3. Register Student for Course")
@@ -18,73 +15,62 @@ def run_grade_book_app():
         print("6. Generate Transcript")
         print("7. Exit")
 
-        choice = input("Enter your choice (1-7): ")
+        choice = input("Enter choice: ")
 
         if choice == '1':
-            email = input("Enter student's email: ")
-            names = input("Enter student's names: ")
-            student = Student(email, names)
+            names = input("Enter student name: ")
+            email = input("Enter student email: ")
+            student = Student(names=names, email=email)
             grade_book.add_student(student)
-            print("Student added successfully!")
+            print("Student added successfully.")
 
         elif choice == '2':
             name = input("Enter course name: ")
             trimester = input("Enter trimester: ")
-            credits = int(input("Enter credits: "))
-            course = Course(name, trimester, credits)
+            credits = int(input("Enter course credits: "))
+            course = Course(name=name, trimester=trimester, credits=credits)
             grade_book.add_course(course)
-            print("Course added successfully!")
+            print("Course added successfully.")
 
         elif choice == '3':
-            email = input("Enter student's email: ")
+            student_email = input("Enter student email: ")
             course_name = input("Enter course name: ")
 
-            # Find student by email
-            student = next((s for s in grade_book.student_list if s.email == email), None)
-            if student:
-                # Find course by name
-                course = next((c for c in grade_book.course_list if c.name == course_name), None)
-                if course:
-                    grade_book.register_student_for_course(student, course)
-                    print(f"Student {student.names} registered for course {course.name}!")
-                else:
-                    print(f"Course {course_name} not found.")
+            student = session.query(Student).filter_by(email=student_email).first()
+            course = session.query(Course).filter_by(name=course_name).first()
+
+            if student and course:
+                grade_book.register_student_for_course(student, course)
+                print("Student registered for course successfully.")
             else:
-                print(f"Student with email {email} not found.")
+                print("Student or Course not found.")
 
         elif choice == '4':
-            # Calculate ranking and display
-            ranking = grade_book.calculate_ranking()
-            print("\nRanking of Students based on GPA:")
-            for i, student in enumerate(ranking, start=1):
-                print(f"{i}. {student.names} - GPA: {student.GPA}")
+            sorted_students = grade_book.calculate_ranking()
+            print("Student Rankings:")
+            for student in sorted_students:
+                print(f"{student.names} - GPA: {student.GPA}")
 
         elif choice == '5':
-            grade = float(input("Enter grade to search for: "))
+            grade = input("Enter grade to search for: ")
             matching_students = grade_book.search_by_grade(grade)
-            if matching_students:
-                print(f"\nStudents with grade {grade}:")
-                for student in matching_students:
-                    print(f"- {student.names}")
-            else:
-                print(f"No students found with grade {grade}.")
+            print("Students with grade", grade)
+            for student in matching_students:
+                print(f"{student.names} - Email: {student.email}")
 
         elif choice == '6':
-            email = input("Enter student's email to generate transcript: ")
-            student = next((s for s in grade_book.student_list if s.email == email), None)
+            student_email = input("Enter student email: ")
+            student = session.query(Student).filter_by(email=student_email).first()
             if student:
-                transcript = grade_book.generate_transcript(student)
-                print("\nTranscript:")
-                print(transcript)
+                print(grade_book.generate_transcript(student))
             else:
-                print(f"Student with email {email} not found.")
+                print("Student not found.")
 
         elif choice == '7':
-            print("Exiting Grade Book Application.")
             break
 
         else:
-            print("Invalid choice. Please enter a number from 1 to 7.")
+            print("Very wrong choice, Please try again.")
 
 if __name__ == "__main__":
     run_grade_book_app()

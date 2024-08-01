@@ -1,5 +1,3 @@
-from models import Student, Course
-
 class GradeBook:
     def __init__(self, session):
         self.session = session
