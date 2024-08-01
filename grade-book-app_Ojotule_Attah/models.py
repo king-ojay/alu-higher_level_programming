@@ -1,10 +1,11 @@
+# models.py
+
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float, Table
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 
 Base = declarative_base()
 
-# Association table for many-to-many relationship between students and courses
 student_course = Table('student_course', Base.metadata,
     Column('student_id', Integer, ForeignKey('students.id')),
     Column('course_id', Integer, ForeignKey('courses.id'))
