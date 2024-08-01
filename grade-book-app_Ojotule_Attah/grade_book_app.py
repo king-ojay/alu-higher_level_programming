@@ -1,6 +1,15 @@
 from grade_book import GradeBook
 from models import Student, Course
-from database_setup import session
+from database_setup import 
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+
+engine = create_engine('sqlite:///gradebook.db')
+Base.metadata.create_all(engine)
+
+Session = sessionmaker(bind=engine)
+session = Session()
 
 def run_grade_book_app():
     grade_book = GradeBook(session)
