@@ -1,6 +1,6 @@
 from grade_book import GradeBook
 from models import Student, Course
-from database_setup import 
+from database_setup import session 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
